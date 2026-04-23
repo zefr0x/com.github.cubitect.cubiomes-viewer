@@ -10,7 +10,7 @@ finish-args:
   - --share=ipc
 modules:
   - name: cubiomes-viewer
-    buildsystem: qmake-ninja
+    buildsystem: qmake
     config-opts:
       - CONFIG+=release
     cleanup:
