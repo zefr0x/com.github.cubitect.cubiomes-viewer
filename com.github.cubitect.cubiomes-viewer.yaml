@@ -20,13 +20,13 @@ modules:
       - install -Dm644 etc/com.github.cubitect.cubiomes-viewer.desktop -t /app/share/applications/
       - install -Dm644 etc/icon.svg /app/share/icons/hicolor/scalable/apps/com.github.cubitect.cubiomes-viewer.svg
     sources:
-      - type: archive
-        url: https://github.com/Cubitect/cubiomes-viewer/releases/download/4.1.2/cubiomes-viewer-4.1.2-src.tar.gz
-        sha256: fa8aa328b4bfbdd5df9474cc9bd13a121d4c93f5f45f2fd40a79a53d9ab42255
+      - type: git
+        url: https://github.com/Cubitect/cubiomes-viewer.git
+        tag: 4.1.2
+        commit: 3acc863245b30c655498d60323c50da0865e0199
         x-checker-data:
-          type: json
-          url: https://api.github.com/repos/Cubitect/cubiomes-viewer/releases/latest
-          version-query: .tag_name
-          url-query: .assets[] | select(.name|endswith("-src.tar.gz")) | .browser_download_url
+          type: git
+          tag-pattern: ^(\d+\.\d+\.\d+)$
+          version-scheme: semantic
     cleanup:
       - /lib
