@@ -1,6 +1,6 @@
 app-id: com.github.cubitect.cubiomes-viewer
 runtime: org.kde.Platform
-runtime-version: 5.15-24.08
+runtime-version: 5.15-25.08
 sdk: org.kde.Sdk
 command: cubiomes-viewer
 finish-args:
@@ -8,12 +8,13 @@ finish-args:
   - --socket=wayland
   - --device=dri
   - --share=ipc
-
 modules:
   - name: cubiomes-viewer
-    buildsystem: qmake
+    buildsystem: qmake-ninja
     config-opts:
       - CONFIG+=release
+    cleanup:
+      - /lib
     post-install:
       - install -Dm755 cubiomes-viewer /app/bin/cubiomes-viewer
       - install -Dm644 etc/com.github.cubitect.cubiomes-viewer.metainfo.xml -t /app/share/metainfo/
@@ -26,7 +27,4 @@ modules:
         commit: 3acc863245b30c655498d60323c50da0865e0199
         x-checker-data:
           type: git
-          tag-pattern: ^(\d+\.\d+\.\d+)$
           version-scheme: semantic
-    cleanup:
-      - /lib
